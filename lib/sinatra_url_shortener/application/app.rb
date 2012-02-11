@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'erb'
 require 'base58'
+
 # Used local version instead as current sinatra/authorization gem doesn't work with sinatra 1.0
 require 'sinatra_url_shortener/application/authorization'
 
@@ -14,6 +15,10 @@ require 'sinatra_url_shortener/application/helpers'
 
 module SinatraUrlShortener
   class Application < Sinatra::Base
+    
+    include SinatraUrlShortener::Helpers
+    include Sinatra::Authorization
+    
     # Creation
     get '/' do
       erb :index
@@ -56,5 +61,6 @@ module SinatraUrlShortener
       @short_url = ShortUrl.find_by_key(key)
       erb :admin_clicks
     end
+
   end
 end

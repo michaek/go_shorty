@@ -16,7 +16,7 @@ module Sinatra
     # Redefine this method on your helpers block to actually contain
     # your authorization logic.
     def authorize(username, password)
-      false
+      true
     end
 
     # From you app, call set :authorization_realm, "my app" to set this

@@ -1,7 +1,6 @@
-require 'sinatra_url_shortener'
-# require File.join(File.dirname(__FILE__), 'lib/sinatra_url_shortener.rb')
+require 'go_shorty'
 
-# set :env,      :production
-# disable :run, :reload
+set :env,      :production
+disable :run, :reload
 
-run SinatraUrlShortener::Application
+run GoShorty::Application

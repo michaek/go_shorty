@@ -1,6 +1,4 @@
 class ShortUrl < ActiveRecord::Base
-  has_many :clicks, :dependent => :destroy
-  
   default_scope :order => 'created_at DESC'
  
   validates_presence_of :url
@@ -16,10 +14,6 @@ class ShortUrl < ActiveRecord::Base
       nil
     end
   end
-  
-  def click(referrer)
-    self.clicks.create(:referrer => referrer)
-  end
 
   protected
   
@@ -30,16 +24,8 @@ class ShortUrl < ActiveRecord::Base
         errors.add(:url, 'Only HTTP protocol addresses can be used')
       end
     rescue URI::InvalidURIError
-        errors.add(:url, 'The format of the url is not valid.')
+      errors.add(:url, 'The format of the url is not valid.')
     end
     true
   end
-end
-
-class Click < ActiveRecord::Base
-  belongs_to :short_url
-  
-  default_scope :order => 'created_at DESC'
-  
-  validates_presence_of :referrer
 end

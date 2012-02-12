@@ -1,0 +1,5 @@
+%h1 Error!
+%p Unfortunately there was a problem creating your short url:
+.errors
+  = display_errors(@short_url)
+= erb(:form, :layout => false)

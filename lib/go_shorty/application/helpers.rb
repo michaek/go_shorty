@@ -1,4 +1,4 @@
-module SinatraUrlShortener
+module GoShorty
   module Helpers
 
     include Rack::Utils
